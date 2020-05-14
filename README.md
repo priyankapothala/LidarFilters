@@ -1,6 +1,6 @@
 # LIDAR Sensor
 
-The LIDAR Sensor genererates scans at a certain rate and each scan is an array of length N of float values representing distance measurements. N is typically in the range of ~[200, 1000] measurements. Measured distances are typically in the range of [0.03,50] meteres. Each time a scan is received, it will be passed on to the filters.
+The LIDAR Sensor generates scans at a certain rate and each scan is an array of length N of float values representing distance measurements. N is typically in the range of ~[200, 1000] measurements. Measured distances are typically in the range of [0.03,50] meteres. Each time a scan is received, it will be passed on to the filters.
 
 ## RangeFilter
 
@@ -14,7 +14,7 @@ filter = RangeFilter(0.03,50)
 
 ### Description
 
-- RangeFilter constructor checks if the range_min and range_max parameters are valid and creates an object. If the values are not valid it raises a *ValueError*
+- RangeFilter constructor checks if the range_min and range_max parameters are valid and creates an object. If the values are not valid, it raises a *ValueError*
 - The **update** method in RangeFilter takes a list of measurements as input and checks if all measurements are within the valid range
 - It replaces all the values that are below range_min with range_min value and those above the range_max with range_max value
   
@@ -30,13 +30,13 @@ filter = TemporalMedianFilter(3)
 
 ### Description
 
-- The TemporalMedianFilter return the median of the current and previous D scans
+- The TemporalMedianFilter returns the median of the current and previous D scans
 - TemporalMedianFilter constructor checks if the parameter D(# previous scans) is valid and creates the filter object
 - The **update** method calculates the median of the current and previous D scans and returns the list of medians
-- If D is 0, then the input scan is return
+- If D is 0, then the input scan is returned
 - __history array in the update method stores the previous D scans. If the array has more than D scans, then the oldest entry is removed
 - If the no of scans in the entry is less then D, then the median of those scans and the current scan is returned
-- update method also checks if the length of the scans are consistent
+- The **update** method also checks if the length of the scans are consistent
 
 ## Project Structure
 
